@@ -4,6 +4,7 @@ from xml.dom import minidom
 class makeJS():
     
     # TODO handle exceptions (malformed html/xml, etc)
+    # TODO use createDocumentFragment
 
     elemcounter = {}
     
@@ -16,6 +17,7 @@ class makeJS():
       
         
         ret = ''
+        retAppend = ''
         
         for elements in range(len(ndom.getElementsByTagName('*'))):
             element = ndom.getElementsByTagName('*')[elements]
@@ -64,14 +66,13 @@ class makeJS():
                     pcl = parent.getAttribute('class').replace('-','_').replace(' ','__')
                     
                     
-                    ret+="_"+parent.nodeName+"_"+pid+"_"+pcl+"_"+parent.getAttribute('mjs_index')+".appendChild(_"+element.nodeName+"_"+elid+"_"+elcl+"_"+element.getAttribute('mjs_index')+");\n\n"
+                    retAppend+="_"+parent.nodeName+"_"+pid+"_"+pcl+"_"+parent.getAttribute('mjs_index')+".appendChild(_"+element.nodeName+"_"+elid+"_"+elcl+"_"+element.getAttribute('mjs_index')+");\n\n"
                 else:
-                    ret+="document.body.appendChild(_"+element.nodeName+"_"+elid+"_"+elcl+"_"+element.getAttribute('mjs_index')+");\n\n\n"
+                    retAppend+="document.body.appendChild(_"+element.nodeName+"_"+elid+"_"+elcl+"_"+element.getAttribute('mjs_index')+");\n\n\n"
                 
             # TODO iterate attributes, include in js 
                 
-        return ret
-
+        return ret+retAppend
 
 js = makeJS()
 r = sys.stdin.read().strip()
