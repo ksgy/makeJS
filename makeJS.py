@@ -5,6 +5,7 @@ class makeJS():
     
     # TODO handle exceptions (malformed html/xml, etc)
     # TODO use createDocumentFragment
+    # TODO config: DEBUGmessages:boolean, appendAtEnd:boolean, prefix:string
 
     elemcounter = {}
     
