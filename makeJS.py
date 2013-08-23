@@ -5,7 +5,7 @@ class makeJS():
     
     # TODO handle exceptions (malformed html/xml, etc)
     # TODO use createDocumentFragment
-    # TODO config: DEBUGmessages:boolean, appendAtEnd:boolean, prefix:string
+    # TODO config: DEBUGmessages:boolean
 
     elemcounter = {}
     
@@ -23,7 +23,7 @@ class makeJS():
         for elements in range(len(ndom.getElementsByTagName('*'))):
             element = ndom.getElementsByTagName('*')[elements]
             
-            if element.nodeName != 'makeJSContainer':
+            if element.nodeName != 'makeJSContainer' and element.nodeName != '#document':
                 
                 # set elemcounter for node type // if not exisits, creates a new one
                 if element.nodeName in self.elemcounter:
@@ -62,7 +62,7 @@ class makeJS():
                     if attr[0] != 'mjs_index':
                         ret+="_"+element.nodeName+"_"+elid+"_"+elcl+"_"+element.getAttribute('mjs_index')+".setAttribute('"+attr[0]+"', '"+attr[1]+"');\n";
                     
-                if parent.nodeName != 'makeJSContainer':
+                if parent.nodeName != 'makeJSContainer' and element.nodeName != '#document':
                     pid = parent.getAttribute('id')
                     pcl = parent.getAttribute('class').replace('-','_').replace(' ','__')
                     
@@ -77,4 +77,4 @@ class makeJS():
 
 js = makeJS()
 r = sys.stdin.read().strip()
-print js.parseJS('<?xml version="1.0" encoding="utf-8" ?><makeCSSContainer>'+r+'</makeCSSContainer>')
+print js.parseJS('<?xml version="1.0" encoding="utf-8" ?><makeJSContainer>'+r+'</makeJSContainer>')
