@@ -5,26 +5,24 @@ Make native JS code from input HTML
 
 Input:
 
-&lt;div id=&quot;container&quot;&gt;
-    &lt;ul class=&quot;listBox&quot;&gt;
-        &lt;li&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;p&gt;&lt;/p&gt;
-    &lt;h3&gt;&lt;/h3&gt;
-    &lt;p&gt;
-        &lt;img src=&quot;&quot; alt=&quot;&quot;&gt;
-        &lt;em&gt;&lt;/em&gt;
-    &lt;/p&gt;
-&lt;/div&gt;
-
+<div id="container">
+    <ul class="listBox">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <p></p>
+    <h3></h3>
+    <p>
+        <img src="" alt="">
+        <em></em>
+    </p>
+</div>
 
 Output:
 
-<pre>
 // DEBUG <div id='container'>
 var _div_container__0 = document.createElement('DIV');
 _div_container__0.setAttribute('id', 'container');
@@ -67,4 +65,3 @@ _div_container__0.appendChild(_h3___0);
 _div_container__0.appendChild(_p___1);
 _p___1.appendChild(_img___0);
 _p___1.appendChild(_em___0);
-</pre>
